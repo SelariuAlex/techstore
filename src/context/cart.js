@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import localCart from "../utils/localCart";
 
 const CartContext = createContext();
@@ -8,8 +8,37 @@ function CartProvider({ children }) {
   const [total, setTotal] = useState(0);
   const [cartItems, setCartItems] = useState(0);
 
+  useEffect(() => {
+    let newCartItems = cart.reduce((total, cartItems) => {
+      return (total += cartItems.amount);
+    }, 0);
+    setCartItems(newCartItems);
+    let newTotal = cart.reduce((total, cartItems) => {
+      return (total += cartItems.amount * cartItems.price);
+    }, 0);
+    newTotal = parseFloat(newTotal.toFixed(2));
+    setTotal(newTotal);
+  }, [cart]);
+
+  const removeItem = id => {};
+  const increaseAmount = id => {};
+  const decreaseAmount = id => {};
+  const addToCart = product => {};
+  const clearCart = () => {};
+
   return (
-    <CartContext.Provider value={{ cart, total, cartItems }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        total,
+        cartItems,
+        removeItem,
+        increaseAmount,
+        decreaseAmount,
+        addToCart,
+        clearCart
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
