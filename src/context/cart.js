@@ -20,7 +20,9 @@ function CartProvider({ children }) {
     setTotal(newTotal);
   }, [cart]);
 
-  const removeItem = id => {};
+  const removeItem = id => {
+    setCart([...cart].filter(item => item.id !== id));
+  };
   const increaseAmount = id => {};
   const decreaseAmount = id => {};
   const addToCart = product => {};
