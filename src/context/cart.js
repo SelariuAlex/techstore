@@ -20,12 +20,19 @@ function CartProvider({ children }) {
     setTotal(newTotal);
   }, [cart]);
 
-  const removeItem = id => {
-    setCart([...cart].filter(item => item.id !== id));
+  const removeItem = (id) => {
+    setCart([...cart].filter((item) => item.id !== id));
   };
-  const increaseAmount = id => {};
-  const decreaseAmount = id => {};
-  const addToCart = product => {};
+  const increaseAmount = (id) => {
+    const newCart = [...cart].map((item) => {
+      return item.id === id
+        ? { ...item, amount: item.amount + 1 }
+        : { ...item };
+    });
+    setCart(newCart);
+  };
+  const decreaseAmount = (id) => {};
+  const addToCart = (product) => {};
   const clearCart = () => {};
 
   return (
@@ -38,7 +45,7 @@ function CartProvider({ children }) {
         increaseAmount,
         decreaseAmount,
         addToCart,
-        clearCart
+        clearCart,
       }}
     >
       {children}
