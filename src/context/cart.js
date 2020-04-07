@@ -45,7 +45,9 @@ function CartProvider({ children }) {
     }
   };
   const addToCart = (product) => {};
-  const clearCart = () => {};
+  const clearCart = () => {
+    setCart([]);
+  };
 
   return (
     <CartContext.Provider
