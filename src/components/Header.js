@@ -1,30 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import CartLink from "../components/Cart/CartLink";
 
 export default function Header() {
   return (
-    <header className="header">
+    <header className='header'>
       <nav>
         <ul>
           <div>
             <li>
-              <Link to="/">Home</Link>
+              <Link to='/'>Home</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to='/about'>About</Link>
             </li>
             <li>
-              <Link to="/products">Products</Link>
+              <Link to='/products'>Products</Link>
             </li>
           </div>
           <div>
             <li>
-              <Link to="/login">Login</Link>
+              <Link to='/login'>Login</Link>
             </li>
+            <CartLink />
           </div>
-          <li>
-            <Link to="/cart">Cart</Link>
-          </li>
         </ul>
       </nav>
     </header>
